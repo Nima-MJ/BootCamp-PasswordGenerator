@@ -2,6 +2,9 @@
 var generatePassword = function(){
   var passChar = [];
   var length = window.prompt("How long would you like your password to be? Please select a number between 8 to 128 ");
+  while (length < 8 || length > 128){
+    length = window.prompt("Input not valid! Please select a number between 8 to 128:  ")
+  }
   const lowerCase = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
   const upperCase = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
   const numeric = [0,1,2,3,4,5,6,7,8,9];
@@ -11,7 +14,7 @@ var generatePassword = function(){
   var upperCasePrompt = window.prompt("Would you like your password to contain uppercase letters? type YES OR NO ");
   var numericPrompt = window.prompt("Would you like your password to contain numerical numbers? type YES OR NO");
   var specialCharPrompt = window.prompt("Would you like your password to contain special characters? type YES OR NO");
-
+ 
   if (lowerCasePrompt === "YES" || lowerCasePrompt === "yes"){
     for (var i=0 ; i< lowerCase.length; i++){
       passChar.push(lowerCase[i]);
@@ -32,7 +35,22 @@ var generatePassword = function(){
       passChar.push(specialChar[i]);
     }
   }
-  return passChar;
+
+  //call create password to generate a random password
+  var passwordArray = createPassword(passChar, length);
+  return passwordArray;
+};
+
+var createPassword = function(charArray, length){
+  var i = 0;
+  var passwordArray = [];
+  while(i < length){
+    var index = Math.floor(Math.random()*charArray.length);
+    passwordArray.push(charArray[index]);
+    i++;
+  }
+  passwordArray = passwordArray.join('');
+  return passwordArray;
 };
 
 // Get references to the #generate element
