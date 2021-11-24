@@ -14,7 +14,7 @@ var generatePassword = function(){
   var upperCasePrompt = window.prompt("Would you like your password to contain uppercase letters? type YES OR NO ");
   var numericPrompt = window.prompt("Would you like your password to contain numerical numbers? type YES OR NO");
   var specialCharPrompt = window.prompt("Would you like your password to contain special characters? type YES OR NO");
- 
+ // if statements for different criteria 
   if (lowerCasePrompt === "YES" || lowerCasePrompt === "yes"){
     for (var i=0 ; i< lowerCase.length; i++){
       passChar.push(lowerCase[i]);
